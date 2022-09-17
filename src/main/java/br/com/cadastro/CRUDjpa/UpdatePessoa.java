@@ -2,6 +2,7 @@ package br.com.cadastro.CRUDjpa;
 
 import br.com.cadastro.dao.PessoaDAO;
 import br.com.cadastro.modelo.Pessoas;
+import br.com.cadastro.modelo.ValidaCPF;
 import br.com.cadastro.util.JPAUtil;
 
 import javax.persistence.EntityManager;
@@ -48,10 +49,14 @@ public class UpdatePessoa {
         usuarioUP.setEndereço(cidade);
 
         //Busca o CPF e passa para a ATT
-        System.out.println("Informe o CPF");
+        System.out.println("Informe o CPF (APENAS NÚMEROS): ");
         String cpf = teclado.next();
-        usuarioUP.setCpf(cpf);
-
+        if(ValidaCPF.isCPF(cpf) == true) {
+            usuarioUP.setCpf(cpf);
+        } else {
+            System.out.println("[ERRO] DIGITE UM CPF VÁLIDO!");
+            return;
+        }
 
         //Atualizando a pessoa informada por ID
         em.getTransaction().begin();

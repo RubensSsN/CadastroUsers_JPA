@@ -41,7 +41,8 @@ public class UserCadastro {
         if(ValidaCPF.isCPF(cpf) == true) {
             usuario.setCpf(ValidaCPF.imprimeCPF(cpf));
         } else {
-            System.out.println("ERRO DIGITE UM CPF VÁLIDO!");
+            System.out.println("[ERRO] DIGITE UM CPF VÁLIDO!");
+            return;
         }
 
         try{
